@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Platforms>AnyCPU;x64;x86</Platforms> 
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7</LangVersion>
+    <DefineConstants>CON_CONSOLE</DefineConstants>
+    <OutputPath>..\bin\app\</OutputPath>
+  </PropertyGroup>
+ 
+  <PropertyGroup Condition="'$(Platform)'=='x86'"> <!--just for visual studio on windows. -->
+    <DefineConstants>$(DefineConstants);CON_X86</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\src\*.cs" />
+    <None Remove="nuget.config" /> <!-- Disable this file in visual studio. -->
+  </ItemGroup>
+
+</Project>
