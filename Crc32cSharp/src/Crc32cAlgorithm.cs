@@ -1,4 +1,4 @@
-﻿/*
+/*
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
                    Version 2, December 2004
 
@@ -29,11 +29,12 @@ using System.IO;
 
 using System.Runtime.Intrinsics.X86;
 
-namespace Crc32cCore
+namespace Crc32cSharp
 {
     /// <summary>
     /// Represents the class which provides a implementation of the CRC32c algorithm.
     /// </summary>
+    /// <threadsafety static="true" instance="false"/>
     public sealed class Crc32cAlgorithm
 #if !(CON_NATIVE && CON_LIBRARY)
                 : HashAlgorithm
@@ -267,6 +268,9 @@ namespace Crc32cCore
         /// <param name="count">The number of elements in the array.</param>
         /// <param name="hashValue">A pointer to a <see cref="uint"/> receives the CRC32C hash. This value is reversed.</param>
         /// <returns>If this function succeeds, it returns 0. Otherwise, invalid arguments is passed to the function.</returns>
+        /// <remarks>
+        /// This method is an export function(stdCall), can not be invoked by managed code.
+        /// </remarks>
         [NativeCallable(EntryPoint = "ComputeCrc32c", CallingConvention = CallingConvention.StdCall)]
         public unsafe static Crc32cError ComputeCrc32c([In]byte* buffer, int count, [Out]uint* hashValue)
         {
@@ -284,6 +288,9 @@ namespace Crc32cCore
         /// <param name="hashValue">A pointer to a <see cref="uint"/> receives the CRC32C hash.</param>
         /// <param name="reversed">Indicates that whether the <paramref name="hashValue"/> should be reversed.</param>
         /// <returns>If this function succeeds, it returns 0. Otherwise, invalid arguments is passed to the function.</returns>
+        /// <remarks>
+        /// This method is an export function(stdCall), can not be invoked by managed code.
+        /// </remarks>
         [NativeCallable(EntryPoint = "ComputeCrc32cEx", CallingConvention = CallingConvention.StdCall)]
         public unsafe static Crc32cError ComputeCrc32cEx([In]byte* buffer, int count, [In, Out] uint* hashValue, int reversed)
         {
