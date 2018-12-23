@@ -21,6 +21,8 @@ double click `build_all_win.cmd` in `build` folder.
 
 `$ ./build/build_all_os.sh`
 
-## How to use
+## Usage
 
-See [Wiki](https://github.com/differentrain/Crc32cSharp/wiki)
+This repo is a sample whose implementation is very simple P:), so the comments of it's source code is enough.
+
+The whole concept of usage, see [Wiki](https://github.com/differentrain/Crc32cSharp/wiki).
