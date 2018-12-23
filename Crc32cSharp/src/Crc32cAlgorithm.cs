@@ -83,10 +83,6 @@ namespace Crc32cSharp
                     return reversed ? ~hashValue : hashValue;
                 });
             }
-            else if (Sse42.IsSupported)
-            {
-
-            }
             else
             {
                 _Crc32cTable = new uint[] {
