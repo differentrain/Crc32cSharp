@@ -61,24 +61,30 @@ namespace Crc32cSharp
                 {
 #if CON_X86
                     var puint = (uint*)buffer;
+                    uint idata;
                     while (count > 3)
                     {
-                        hashValue = Sse42.Crc32(hashValue, *(puint++));
+                        idata=*(puint++);
+                        hashValue = Sse42.Crc32(hashValue, idata);
                         count -= 4;
                     }
                     var pubyte = (byte*)puint;
 #else
                     var pulong = (ulong*)buffer;
+                    ulong ldata;
                     while (count > 7)
                     {
-                        hashValue = (uint)Sse42.X64.Crc32(hashValue, *(pulong++));
+                        ldata=*(pulong++);
+                        hashValue = (uint)Sse42.X64.Crc32(hashValue, ldata);
                         count -= 8;
                     }
                     var pubyte = (byte*)pulong;
 #endif
+                    byte bdata;
                     while (count-- > 0)
                     {
-                        hashValue = Sse42.Crc32(hashValue, *(pubyte++));
+                        bdata=*(pubyte++);
+                        hashValue = Sse42.Crc32(hashValue, bdata);
                     }
                     return reversed ? ~hashValue : hashValue;
                 });
